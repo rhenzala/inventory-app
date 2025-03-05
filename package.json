@@ -1,0 +1,26 @@
+{
+  "name": "inventory-app",
+  "version": "1.0.0",
+  "description": "Inventory management application using Express and PostgreSQL",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rhenzala/inventory-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rhenzala/inventory-app/issues"
+  },
+  "homepage": "https://github.com/rhenzala/inventory-app#readme",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "pg": "^8.13.3"
+  }
+}
