@@ -25,7 +25,8 @@ exports.getCategories = async (req, res) => {
 exports.getItems = async (req, res) => {
   try {
     const items = await queries.getAllItems();
-    res.render("items", {items} );
+    const categories = await queries.getAllCategories();
+    res.render("items", {items, categories} );
   } catch(e) {
     console.log(e);
     res.status(500).send("Server Error");
@@ -45,8 +46,8 @@ exports.createCategory = async (req, res) => {
 
 exports.createItem = async (req, res) => {
   try {
-    const { name, description, price, quantity, category_id } = req.body;
-    await queries.insertItem(name, description, price, quantity, category_id);
+    const { name, description, effective_range, damage, fire_rate, accuracy, mobility, control, reload_speed, category_id } = req.body;
+    await queries.insertItem(name, description, effective_range, damage, fire_rate, accuracy, mobility, control, reload_speed, category_id);
     res.redirect("/items");
   } catch(e) {
     console.log(e);
@@ -57,8 +58,8 @@ exports.createItem = async (req, res) => {
 exports.updateItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, description, price, quantity, category_id } = req.body;
-    await queries.updateItem(id, name, description, price, quantity, category_id);
+    const { name, description, effective_range, damage, fire_rate, accuracy, mobility, control, reload_speed, category_id } = req.body;
+    await queries.updateItem(id, name, description, effective_range, damage, fire_rate, accuracy, mobility, control, reload_speed, category_id);
     res.redirect("/items");
   } catch (err) {
     console.error("Error updating item:", err);
