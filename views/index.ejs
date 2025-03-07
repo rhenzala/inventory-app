@@ -4,30 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventory Management</title>
-    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h1>Inventory Management</h1>
-
-    <h2>Categories</h2>
-    <ul>
-        <% categories.forEach(category => { %>
-            <li>
-                <a href="/categories"><%= category.name %></a> - <%= category.description %>
-            </li>
-        <% }); %>
-    </ul>
-
-    <h2>Items</h2>
-    <ul>
-        <% items.forEach(item => { %>
-            <li>
-                <strong><%= item.name %></strong> - <%= item.description %> | $<%= item.price %> 
-                (Stock: <%= item.quantity %>, Category: <%= item.category_name %>)
-            </li>
-        <% }); %>
-    </ul>
-
-    <a href="/categories">Manage Categories</a> | <a href="/items">Manage Items</a>
+    <header>
+        <div class="title">CODM Weapon Inventory</div>
+        <nav>
+            <a href="/categories">Categories</a>
+            <a href="/items">Items</a>
+        </nav>
+    </header>
+    <main>
+        <section class="categories-section">
+            <h2>Categories</h2>
+            <ul>
+                <% categories.forEach(category => { %>
+                    <li>
+                        <button type="submit" class="home-categories-list"><%= category.name %></button>
+                    </li>
+                <% }); %>
+            </ul>
+        </section>
+        <section class="items-section">
+            <h2>Weapons</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Effective Range</th>
+                        <th>Damage</th>
+                        <th>Fire Rate</th>
+                        <th>Accuracy</th>
+                        <th>Mobility</th>
+                        <th>Control</th>
+                        <th>Reload Speed</th>
+                        <th>Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% items.forEach(item => { %>
+                        <tr>
+                            <td><%= item.name %></td>
+                            <td><%= item.description %></td>
+                            <td><%= item.effective_range %>m</td>
+                            <td><%= item.damage %></td>
+                            <td><%= item.fire_rate %></td>
+                            <td><%= item.accuracy %></td>
+                            <td><%= item.mobility %></td>
+                            <td><%= item.control %></td>
+                            <td><%= item.reload_speed %>s</td>
+                            <td><%= item.category_name %></td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </section>
+    </main>
 </body>
 </html>
