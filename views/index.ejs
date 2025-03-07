@@ -18,12 +18,17 @@
         <section class="categories-section">
             <h2>Categories</h2>
             <ul>
+                <li>
+                    <button type="button" class="home-categories-list" data-category="all">All</button>
+                </li>
                 <% categories.forEach(category => { %>
-                    <li>
-                        <button type="submit" class="home-categories-list"><%= category.name %></button>
-                    </li>
+                  <li>
+                    <button type="button" class="home-categories-list" data-category="<%= category.name %>">
+                      <%= category.name %>
+                    </button>
+                  </li>
                 <% }); %>
-            </ul>
+              </ul>              
         </section>
         <section class="items-section">
             <h2>Weapons</h2>
@@ -44,7 +49,7 @@
                 </thead>
                 <tbody>
                     <% items.forEach(item => { %>
-                        <tr>
+                        <tr data-category="<%= item.category_name %>">
                             <td><%= item.name %></td>
                             <td><%= item.description %></td>
                             <td><%= item.effective_range %>m</td>
@@ -61,5 +66,26 @@
             </table>
         </section>
     </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const categoryButtons = document.querySelectorAll(".home-categories-list");
+            const tableRows = document.querySelectorAll("tbody tr");
+      
+            categoryButtons.forEach(button => {
+                button.addEventListener("click", function() {
+                    const selectedCategory = this.getAttribute("data-category");
+      
+                    tableRows.forEach(row => {
+                        const rowCategory = row.getAttribute("data-category");
+                        if (rowCategory === selectedCategory || selectedCategory === "all") {
+                            row.style.display = "";
+                        } else {
+                            row.style.display = "none";
+                        }
+                    });
+                });
+            });
+        });
+      </script>      
 </body>
 </html>
